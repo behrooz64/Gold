@@ -1,0 +1,33 @@
+{
+  "name": "حساب‌طلا | محاسبه‌گر قیمت طلا",
+  "short_name": "حساب‌طلا",
+  "description": "محاسبه دقیق قیمت طلای ساخته‌شده بر اساس نرخ روز، اجرت، سود فروشنده و مالیات بر ارزش افزوده",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e0d0b",
+  "theme_color": "#0e0d0b",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

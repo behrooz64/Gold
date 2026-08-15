@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>حساب‌طلا | محاسبه‌گر قیمت طلا</title>
+<meta name="description" content="محاسبه دقیق قیمت طلای ساخته‌شده بر اساس نرخ روز، اجرت ساخت، سود فروشنده و مالیات بر ارزش افزوده" />
+<meta name="theme-color" content="#0e0d0b" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="حساب‌طلا" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="ingot-mark">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="18,20 82,20 92,80 8,80" fill="#c9a13a"/>
+        <polygon points="18,20 82,20 90,30 10,30" fill="#f2cf5b"/>
+        <line x1="22" y1="55" x2="78" y2="55" stroke="#7a5c1e" stroke-width="3"/>
+      </svg>
+    </div>
+    <div>
+      <h1>حساب‌طلا</h1>
+      <p>محاسبه‌گر قیمت طلای ساخته‌شده</p>
+    </div>
+  </header>
+
+  <main class="card">
+    <div class="field">
+      <label for="price">قیمت هر گرم طلای ۱۸ عیار <span class="unit">تومان</span></label>
+      <div class="input-shell">
+        <input id="price" inputmode="decimal" autocomplete="off" placeholder="مثال: ۳٬۳۵۰٬۰۰۰" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="weight">وزن طلا <span class="unit">گرم</span></label>
+      <div class="input-shell">
+        <input id="weight" inputmode="decimal" autocomplete="off" placeholder="مثال: ۱۲٫۳۴۵" />
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="wage">اجرت ساخت <span class="unit">٪</span></label>
+        <div class="input-shell">
+          <input id="wage" inputmode="decimal" autocomplete="off" placeholder="۱۵" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="profit">سود فروشنده <span class="unit">٪</span></label>
+        <div class="input-shell">
+          <input id="profit" inputmode="decimal" autocomplete="off" value="۷" />
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="vat">مالیات بر ارزش افزوده <span class="unit">٪</span></label>
+      <div class="input-shell">
+        <input id="vat" inputmode="decimal" autocomplete="off" value="۱۰" />
+      </div>
+    </div>
+  </main>
+
+  <section class="receipt">
+    <div class="receipt-title">جزئیات محاسبه</div>
+
+    <div class="receipt-row">
+      <span>قیمت پایه طلا</span>
+      <span class="val" id="row-base">۰<span class="tmn">تومان</span></span>
+    </div>
+    <div class="receipt-row">
+      <span>اجرت ساخت</span>
+      <span class="val" id="row-wage">۰<span class="tmn">تومان</span></span>
+    </div>
+    <div class="receipt-row">
+      <span>سود فروشنده</span>
+      <span class="val" id="row-profit">۰<span class="tmn">تومان</span></span>
+    </div>
+    <div class="receipt-row">
+      <span>مالیات بر ارزش افزوده</span>
+      <span class="val" id="row-vat">۰<span class="tmn">تومان</span></span>
+    </div>
+
+    <div class="receipt-total">
+      <span class="label">جمع کل قابل پرداخت</span>
+      <span class="amount" id="total-amount">۰<span class="tmn"> تومان</span></span>
+    </div>
+  </section>
+
+  <button class="install-hint" id="install-hint" type="button">
+    نصب حساب‌طلا روی صفحه اصلی
+  </button>
+
+  <p class="footnote">
+    مالیات بر ارزش افزوده طبق فرمول رسمی بازار طلا فقط بر <b>اجرت و سود فروشنده</b> اعمال می‌شود، نه بر کل ارزش طلا.
+  </p>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
