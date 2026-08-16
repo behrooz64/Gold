@@ -37,6 +37,11 @@ const els = {
   rowProfit: document.getElementById('row-profit'),
   rowVat: document.getElementById('row-vat'),
   total: document.getElementById('total-amount'),
+  paidTotal: document.getElementById('paidTotal'),
+  paidWeight: document.getElementById('paidWeight'),
+  perGramResult: document.getElementById('perGramResult'),
+  verdictBox: document.getElementById('checkVerdict'),
+  verdictText: document.getElementById('verdictText'),
 };
 
 function setStep(input, delta) {
@@ -72,6 +77,47 @@ function calculate() {
   els.total.textContent = formatInt(total);
 }
 
+function checkPurchase() {
+  const paidTotal = parseNumber(els.paidTotal.value) || 0;
+  const paidWeight = parseNumber(els.paidWeight.value) || 0;
+  const marketPrice = parseNumber(els.price.value) || 0;
+
+  if (paidTotal <= 0 || paidWeight <= 0) {
+    els.perGramResult.innerHTML = '۰ <span class="tmn">تومان</span>';
+    els.verdictBox.hidden = true;
+    return;
+  }
+
+  const perGram = paidTotal / paidWeight;
+  els.perGramResult.innerHTML = `${formatInt(perGram)} <span class="tmn">تومان</span>`;
+
+  if (marketPrice <= 0) {
+    els.verdictBox.hidden = true;
+    return;
+  }
+
+  const diffPct = ((perGram - marketPrice) / marketPrice) * 100;
+  const absDiff = Math.abs(diffPct);
+  const diffText = toFaDigits(absDiff.toFixed(1));
+
+  els.verdictBox.hidden = false;
+  els.verdictBox.classList.remove('good', 'mid', 'bad');
+
+  if (perGram <= marketPrice) {
+    els.verdictBox.classList.add('good');
+    els.verdictText.textContent = `عالی؛ قیمت هر گرم شما مساوی یا پایین‌تر از نرخ روز است (٪${diffText}−).`;
+  } else if (absDiff <= 3) {
+    els.verdictBox.classList.add('good');
+    els.verdictText.textContent = `به‌صرفه؛ فقط ٪${diffText} با نرخ روز فاصله دارید.`;
+  } else if (absDiff <= 10) {
+    els.verdictBox.classList.add('mid');
+    els.verdictText.textContent = `متوسط؛ ٪${diffText} بالاتر از نرخ روز پرداخت کرده‌اید.`;
+  } else {
+    els.verdictBox.classList.add('bad');
+    els.verdictText.textContent = `فاصله زیاد؛ ٪${diffText} بالاتر از نرخ روز — اجرت یا سود سنگینی پرداخت شده.`;
+  }
+}
+
 // live-format inputs with Persian digits + thousands separators as the user types
 function attachLiveFormat(input, { decimals = false } = {}) {
   input.addEventListener('input', () => {
@@ -86,6 +132,7 @@ function attachLiveFormat(input, { decimals = false } = {}) {
     if (raw === '') {
       input.value = '';
       calculate();
+      checkPurchase();
       return;
     }
     const [intPart, decPart] = raw.split('.');
@@ -95,6 +142,7 @@ function attachLiveFormat(input, { decimals = false } = {}) {
     const newPos = Math.max(0, input.value.length - caretFromEnd);
     input.setSelectionRange(newPos, newPos);
     calculate();
+    checkPurchase();
   });
 }
 
@@ -103,8 +151,11 @@ attachLiveFormat(els.weight, { decimals: true });
 attachLiveFormat(els.wage, { decimals: true });
 attachLiveFormat(els.profit, { decimals: true });
 attachLiveFormat(els.vat, { decimals: true });
+attachLiveFormat(els.paidTotal);
+attachLiveFormat(els.paidWeight, { decimals: true });
 
 calculate();
+checkPurchase();
 
 // ---------- PWA install prompt ----------
 let deferredPrompt = null;

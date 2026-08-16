@@ -95,6 +95,45 @@
     </div>
   </section>
 
+  <section class="card check-card">
+    <div class="check-title">
+      <span>بررسی به‌صرفه بودن خرید</span>
+    </div>
+    <p class="check-desc">
+      کل مبلغی که پرداخت کردی و کل وزن طلا رو وارد کن تا قیمت واقعی هر گرمت رو ببینی.
+    </p>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="paidTotal">کل مبلغ پرداختی <span class="unit">تومان</span></label>
+        <div class="input-shell">
+          <input id="paidTotal" inputmode="decimal" autocomplete="off" placeholder="مثال: ۴۱٬۳۰۰٬۰۰۰" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="paidWeight">کل وزن طلا <span class="unit">گرم</span></label>
+        <div class="input-shell">
+          <input id="paidWeight" inputmode="decimal" autocomplete="off" placeholder="مثال: ۱۲٫۳۴۵" />
+        </div>
+      </div>
+    </div>
+
+    <div class="check-result">
+      <span class="label">قیمت هر گرم شما</span>
+      <span class="value" id="perGramResult">۰ <span class="tmn">تومان</span></span>
+    </div>
+
+    <div class="check-verdict" id="checkVerdict" hidden>
+      <span class="dot" id="verdictDot"></span>
+      <span id="verdictText"></span>
+    </div>
+
+    <p class="check-note">
+      هر چقدر «قیمت هر گرم شما» به «قیمت هر گرم طلای ۱۸ عیار» که بالا وارد کردی نزدیک‌تر باشد،
+      خرید به‌صرفه‌تر بوده؛ هرچقدر فاصله‌اش بیشتر باشد یعنی اجرت و سود بیشتری پرداخت کرده‌ای.
+    </p>
+  </section>
+
   <button class="install-hint" id="install-hint" type="button">
     نصب حساب‌طلا روی صفحه اصلی
   </button>
