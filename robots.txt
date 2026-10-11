@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://behrooz64.github.io/Gold/sitemap.xml
